@@ -1,8 +1,0 @@
-# Ignore Pipenv files
-Pipfile
-Pipfile.lock
-
-# Ignore Python compiled bytecode
-__pycache__/
-*.pyc
-*.pyo
