@@ -16,6 +16,11 @@ login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
 
+
+
+
+# views
+
 @app.route('/')
 def home():
     rooms = []
@@ -119,6 +124,13 @@ def view_room(room_id):
     else:
         return "Room not found", 404
     
+
+
+
+
+
+# sockets
+
 @socketio.on('send_message')
 def handle_send_message_event(data):
     app.logger.info("{} has sent a message to room {}".format(data['username'], 
@@ -145,5 +157,5 @@ def load_user(username):
     return get_user(username)
 
 if __name__ == '__main__':
-    socketio.run(app=app, host='0.0.0.0', port=5000)
+    socketio.run(app=app, port=5000)
 
