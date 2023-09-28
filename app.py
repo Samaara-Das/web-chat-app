@@ -144,5 +144,5 @@ def load_user(username):
     return get_user(username)
 
 if __name__ == '__main__':
-    socketio.run(app=app, debug=True)
+    socketio.run(app=app, port=5000, host='0.0.0.0')
 
