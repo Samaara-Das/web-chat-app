@@ -4,6 +4,11 @@ from user import User
 from datetime import datetime
 from bson.objectid import ObjectId
 
+'''
+This is a module which connects to a mongodb database and is full of functions which perform operations on the collections of the database. 
+These functions are used for retrieval of data, saving data, removing data and updating data
+'''
+
 client = MongoClient('mongodb+srv://samaara:mQ5EF6zPkr8bJhQg@cluster1.565lfln.mongodb.net/?retryWrites=true&w=majority')
 
 chat_db = client.get_database('ChatDB')

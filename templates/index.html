@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+<!-- This greets the user and shows all the rooms they're a part of. Upon clicking a room, the user will go to that chat room. -->
+
 {% block content %}
     <h1>My Chat App</h1>
     <h3>Hey, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}You. Login or sign up to chat!{% endif %}!</h3>
