@@ -5,7 +5,7 @@
     <h3>{{ message }}</h3>
     <form method="post">
         <label>Room name: </label>
-        <input type="text" name="room_name" value="{{ room._id }}">
+        <input type="text" name="room_name" value="{% if room.name %}{{ room.name }}{% else %}{{ room._id }}{% endif %}">
         <br>
         <label>Members: </label>
         <input type="text" name="members" value="{{ room_members_str }}">

@@ -14,7 +14,7 @@
         
 {% block content %}
     <body>
-        <h1>Welcome to chat room {{ room._id }}</h1>
+        <h1>Welcome to chat room {% if room.name %}{{ room.name }}{% else %}{{ room._id }}{% endif %}</h1>
 
         <div id="messages">
             {% for message in messages %}
@@ -34,7 +34,9 @@
             {% endfor %}
         </ul>
 
-        <a href="{{ room._id }}/edit/">Edit Room</a>
+        {% if is_room_admin %}
+            <a href="edit/">Edit Room</a>
+        {% endif %}
     </body>
 {% endblock %}
 

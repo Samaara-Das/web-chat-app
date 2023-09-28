@@ -8,7 +8,7 @@ flask = "*"
 flask-socketio = "*"
 pymongo = "*"
 flask-login = "*"
-gunicorn = "*"
+eventlet = "*"
 
 [dev-packages]
 

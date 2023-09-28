@@ -84,27 +84,24 @@ def create_room():
 @login_required
 def edit_room(room_id):
     room = get_room(room_id)
-    if room and is_room_admin(room_id, current_user.username):
-        existing_room_members = [member['_id']['username'] for member in get_room_members(room_id)]
-        room_members_str = ','.join(existing_room_members)
-        message = ''
-        if request.method == 'POST':
-            room_name = request.form.get('room_name')
-            room['name'] = room_name
-            update_room(room_id, room_name)
+    existing_room_members = [member['_id']['username'] for member in get_room_members(room_id)]
+    room_members_str = ','.join(existing_room_members)
+    message = ''
+    if request.method == 'POST':
+        room_name = request.form.get('room_name')
+        room['name'] = room_name
+        update_room(room_id, room_name)
 
-            new_members = [username.strip() for username in request.form.get('members').split(',')]
-            members_to_add = list(set(new_members) - set(existing_room_members))
-            members_to_remove = list(set(existing_room_members) - set(new_members))
-            if len(members_to_add):
-                add_room_members(room_id, room_name, members_to_add, current_user.username)
-            if len(members_to_remove):
-                remove_room_members(room_id, members_to_remove)
-            message = 'Room updated successfully!'
-            room_members_str = ','.join(new_members)
-        return render_template('edit_room.html', room=room, room_members_str=room_members_str, message=message)
-    else:
-        return 'Room not found', 404
+        new_members = [username.strip() for username in request.form.get('members').split(',')]
+        members_to_add = list(set(new_members) - set(existing_room_members))
+        members_to_remove = list(set(existing_room_members) - set(new_members))
+        if len(members_to_add):
+            add_room_members(room_id, room_name, members_to_add, current_user.username)
+        if len(members_to_remove):
+            remove_room_members(room_id, members_to_remove)
+        message = 'Room updated successfully!'
+        room_members_str = ','.join(new_members)
+    return render_template('edit_room.html', room=room, room_members_str=room_members_str, message=message)
 
 @app.route('/rooms/<room_id>/') 
 @login_required
@@ -114,7 +111,7 @@ def view_room(room_id):
         room_members = get_room_members(room_id)
         messages = get_messages(room_id)
         return render_template('view_room.html', username=current_user.username, room=room, room_members=room_members,
-                               messages=messages)
+                               messages=messages, is_room_admin=is_room_admin(room_id, current_user.username))
     else:
         return "Room not found", 404
     
@@ -144,5 +141,5 @@ def load_user(username):
     return get_user(username)
 
 if __name__ == '__main__':
-    socketio.run(app=app, port=5000, host='0.0.0.0')
+    socketio.run(app=app, debug=True)
 
