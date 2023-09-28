@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for
 from flask import request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from flask_socketio import SocketIO, join_room, leave_room, send
+from flask_socketio import SocketIO, join_room, leave_room
 from db import *
 from pymongo.errors import DuplicateKeyError
 
@@ -19,7 +19,7 @@ def home():
         rooms = get_rooms_for_user(current_user.username)
     return render_template("index.html", rooms=rooms)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -37,7 +37,7 @@ def login():
             message = 'Failed to login!'
     return render_template('login.html', message=message)
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup/', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -80,7 +80,7 @@ def create_room():
             message = "Failed to create room"
     return render_template('create_room.html', message=message)
 
-@app.route('/rooms/<room_id>/edit', methods=['GET', 'POST']) 
+@app.route('/rooms/<room_id>/edit/', methods=['GET', 'POST']) 
 @login_required
 def edit_room(room_id):
     room = get_room(room_id)
@@ -106,7 +106,7 @@ def edit_room(room_id):
     else:
         return 'Room not found', 404
 
-@app.route('/rooms/<room_id>') 
+@app.route('/rooms/<room_id>/') 
 @login_required
 def view_room(room_id):
     room = get_room(room_id)
