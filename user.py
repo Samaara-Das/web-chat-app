@@ -1,5 +1,10 @@
 from werkzeug.security import check_password_hash
 
+'''
+This class is used for all the users in the application.
+It represents a user.
+'''
+
 class User:
     def __init__(self, username, email, password):
         self.username = username

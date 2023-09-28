@@ -5,6 +5,10 @@ from flask_socketio import SocketIO, join_room, leave_room
 from db import *
 from pymongo.errors import DuplicateKeyError
 
+'''
+This has code for all the views and communcation between the client and server socket. It talks to the client about a new message, a person leaving the room/joining the room. This runs our main app.
+'''
+
 app = Flask(__name__)
 app.secret_key = 'secret key'
 socketio = SocketIO(app)
