@@ -8,3 +8,6 @@ This is a chat app which runs on your browser.
 You first login/sign up. Then you create your own chat rooms, edit them, chat in them and add people to it. You can also chat in the chat rooms which you've been invited to.
 
 Thats it. Enjoyy!!
+
+## How to run it?
+Just type ```python app.py```
