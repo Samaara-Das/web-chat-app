@@ -1,4 +1,4 @@
-# indian-python
+# web-chat-app
 This was taken from: https://www.youtube.com/playlist?list=PLyb_C2HpOQSBUEDI7tx_W4hAz699B6D7p
 
 ## What is it?
@@ -39,4 +39,4 @@ The sockets are used for 3 purposes: to announce someone joining a room, to anno
 3. Leaving room - As soon the client leaves a chat room, it sends a "leave_room" event to the server. The server hears it and sends back a "leave_room_announcement" to all the clients. The clients hear it and perform a certain action with the message/payload they received with that event.
 
 That's it!
-I hope this made some sense to you.
+I hope this made some sense.
