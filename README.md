@@ -1,5 +1,5 @@
 # web-chat-app
-This was taken from: https://www.youtube.com/playlist?list=PLyb_C2HpOQSBUEDI7tx_W4hAz699B6D7p
+Source: https://www.youtube.com/playlist?list=PLyb_C2HpOQSBUEDI7tx_W4hAz699B6D7p
 
 ## What is it?
 This is a chat app which runs on your browser.
