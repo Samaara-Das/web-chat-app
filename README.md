@@ -1,4 +1,7 @@
 # web-chat-app
+
+**🌐 Live demo:** https://samaara-web-chat.onrender.com *(free Render dyno — first request after idle takes ~30s to wake up)*
+
 Source: https://www.youtube.com/playlist?list=PLyb_C2HpOQSBUEDI7tx_W4hAz699B6D7p
 
 ## What is it?
