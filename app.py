@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, redirect, url_for
 from flask import request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -10,7 +11,9 @@ This has code for all the views and communcation between the client and server s
 '''
 
 app = Flask(__name__)
-app.secret_key = 'secret key'
+app.secret_key = os.environ.get('SECRET_KEY')
+if not app.secret_key:
+    raise RuntimeError('SECRET_KEY environment variable is not set. Copy .env.example to .env and fill it in.')
 socketio = SocketIO(app)
 login_manager = LoginManager()
 login_manager.login_view = 'login'

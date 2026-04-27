@@ -1,15 +1,23 @@
+import os
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 from user import User
 from datetime import datetime
 from bson.objectid import ObjectId
+from dotenv import load_dotenv
 
 '''
-This is a module which connects to a mongodb database and is full of functions which perform operations on the collections of the database. 
+This is a module which connects to a mongodb database and is full of functions which perform operations on the collections of the database.
 These functions are used for retrieval of data, saving data, removing data and updating data
 '''
 
-client = MongoClient('mongodb+srv://samaara:MONGO_PWD_REVOKED@cluster1.565lfln.mongodb.net/?retryWrites=true&w=majority')
+load_dotenv()
+
+MONGO_URI = os.environ.get('MONGO_URI')
+if not MONGO_URI:
+    raise RuntimeError('MONGO_URI environment variable is not set. Copy .env.example to .env and fill it in.')
+
+client = MongoClient(MONGO_URI)
 
 chat_db = client.get_database('ChatDB')
 users_collection = chat_db.get_collection('users')
